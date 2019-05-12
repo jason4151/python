@@ -1,2 +1,2 @@
 # python
-Python examples
+A collection of Python scripts and examples.
