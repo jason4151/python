@@ -5,7 +5,7 @@ key = 'children'
 rewards = []
 
 class AlgorithmError(Exception):
-    """Define error handling class."""
+    # Define error handling class
 
     def __init__(self, value):
         self.value = value
@@ -24,11 +24,16 @@ def get_rewards(url):
         else:
             rewards.append(float((json_data['reward'])))
     except:
-        raise AlgorithmError("Please provide a valid URL")
+        raise AlgorithmError('Please provide a valid URL')
 
 # API calls will begin at the apply() method, with the request body passed as 'input'
 # For more details, see algorithmia.com/developers/algorithm-development/languages
 def apply(input):
+    # Clear rewards list on subsequent execution (https://blog.algorithmia.com/advanced-algorithm-design/)
+    if len(rewards) > 0:
+        rewards.clear()
+    
+    # Execute get_rewards recursive function
     get_rewards(input)
     total = str((sum(rewards)))
     return ('Total Rewards: ' + total)

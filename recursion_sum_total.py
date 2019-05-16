@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import requests
+import time
 
 # Initial URL
 url = 'http://algo.work/interview/a'
@@ -21,14 +22,18 @@ def get_reward(url):
         else:
             rewards.append(float((json_data['reward'])))
     except:
-        print('\nERROR: Invalid URL Input: ' + url)
+        print(f'\nERROR: Invalid URL Input: {url}')
 
 # Main
 def main():
-    print('Traversing: ' + url)  
+    if len(rewards) > 0:
+        rewards.clear()
+    start = time.time()
+    print(f'Traversing: {url}')  
     get_reward(url)
     total = str((sum(rewards)))
-    print('Reward Total: ' + total)
+    print(f'Reward Total: {total}')
+    print(f'Duration: {time.time() - start}s')
 
 if __name__ == '__main__':
     main()
