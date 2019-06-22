@@ -3,6 +3,7 @@
 # Strings example
 #
 
+
 print "hello\n"
 print "To print a newline use \\n"
 print "She said: \"hello\""
